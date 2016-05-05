@@ -17,7 +17,7 @@ def Get_customers(path):
             customerlist[customernum]=[line[1],line[2]]
     return customerlist
 
-# Le temps est en milisecondes ici. Comme dans le csv qu'ils nous ont filé. 
+# Le temps est en milisecondes ici. Comme dans le csv qu'ils nous ont filé.
 def Time_remaining(customernum, customerlist, moment):
     dmYFMT = '%d/%m/%Y %H:%M:%S'
     timeleft =1000*(dt.datetime.strptime(customerlist[str(customernum)][1], dmYFMT) - dt.datetime.strptime(moment, dmYFMT))
@@ -36,16 +36,16 @@ def Create_test_parking():
                 Parking["%s.%s.%s"%(row, depth, column)]=NULL
     return Parking
 # Parking est un dictionaire qui resemble à ca: [placenum: customernum, etc...]
-# Du coup avec Parking et Customerlist on a tout ce qu'il faut. 
+# Du coup avec Parking et Customerlist on a tout ce qu'il faut.
 def Create_parking_fromCSV(PATHfile):
     Parking = {}
     with open(PATHfile, 'rb') as model:
         lines = csv.reader(model, delimiter ='\t')
         next(lines, None)
         for line in lines:
-            Parking[line[2]]=NULL  # modifier avec la bonne colone qui correspond.  
+            Parking[line[2]]=NULL  # modifier avec la bonne colone qui correspond.
 
-# Scoring du rangement du parking. 
+# Scoring du rangement du parking.
 #
 # def ScoreParking_Simple(moment):
 #     customerlist=Get_customers('data_full_occupation.csv')
@@ -53,5 +53,4 @@ def Create_parking_fromCSV(PATHfile):
 #         lines = csv.reader(log, delimiter='\t')
 #         next(lines, None)
 #         for line in lines:
-#             #mettre l'actualisation du dico des places, et 
-        
+#             #mettre l'actualisation du dico des places, et

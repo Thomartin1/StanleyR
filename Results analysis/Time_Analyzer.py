@@ -96,7 +96,7 @@ def Waiting_times():
 
 
 def Distance_Walked():
-    lenght = 5 
+    lenght = 5
     totaldist_arrival=0
     totaldist_departure=0
     numberdeparted=0
