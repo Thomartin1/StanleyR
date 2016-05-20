@@ -25,7 +25,7 @@ class Robot:
         self.occupied = False
         self.currentspot = "0.0.0"
 
-    def giveorder(order):
+    def setorder(order):
         if self.occupied :
             self.listtasks.append(order)
         else:

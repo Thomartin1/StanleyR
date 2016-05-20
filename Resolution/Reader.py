@@ -22,7 +22,8 @@ def CreateTimeFrames(PATH):
 
     return noduplicate
 
-
+#On cree un dictionnaire avec comme clef la position de la place. 
+# plus tard, on mettra l'id du client à cette place en face. 
 def CreateParking(PATH, param):
     parking={}
     if param==0:

@@ -1,25 +1,24 @@
-from Reader.py import datareader
+import Reader.py as r
 from SetUp.py import setuprobots
 
 
 
 def GlobalLoop():
 
-    [stamps,parking]=datareader(pathparking,pathtime,pathdemand)
+    [stamps,typeaction,parking]=r.datareader(pathparking,pathtime,pathdemand)
+    [robots,customers]=setuprobots(4,stamps[0])
 
-    robots=setuprobots(4,stamps[0])
 
-    for tf in timeframes:
-        #si il y a une arrivée.
+    for tf in stamps:
+        typeaction = CheckTypeAction(customers, stamps)
         asignedspot=asignswapspot(parking)
-        if(typeevent== arrival):
-            #je place la voiture
-            findplace()
-            giveorder()
 
+        if(typeaction):
+            place=Findplace(parking)
+            neworder=Task(asignedspot,place,tf,target)
+            giveorder(robots,neworder)
 
-        #si il y a un depart:
-        if(typeevent == departure):
+        if(typeaction ==False):
             asignedspot=asignswapspot(parking)
             extractcar()
 
