@@ -20,8 +20,7 @@ def extractcar(assignedspot,parking,robots,place,tf,target):
         if(parking[checkposition]=="none"):
             pass
         else:
-            newlocation=findplace(parking)   #modifier la fonction findplace 
-            #pour ne pas pouvoir selectionner la place sur laquelle on se trouve.
+            newlocation=Findplace(parking)
             neworder=Task(place,newlocation,tf,parking[checkposition])
             giveorder(robots,neworder)
         depth +=1

@@ -1,4 +1,4 @@
-import ModelRobot.py as MR
+import ModelRobots as MR
 
 
 ## We setup the data, customers and robots. 
@@ -16,12 +16,10 @@ def Get_customers(path):
     return customerlist
 
 ## Les robots sont mis dans un dictionnaire 
-def setuprobots(botnum, starttime, pathcust):
+def setuprobots(botnum, starttime):
     robots={}
 
     for i in range(0,botnum):
         robots[i]=MR.Robot(i,starttime)
-
-    customers=Get_customers(pathcust)
 
     return(robots,customers)

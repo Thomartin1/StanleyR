@@ -11,12 +11,12 @@ def Findplace(parking):
                 if(parking[location]=="none"):
                     selected = location
                     found = True
+                if(found):
+                    break
             if(found):
                 break
         if(found):
             break
-    if(found):
-        break
     return selected
 
 # En l'etat la fonction retourne la place la plus proche du point 0.0.0 

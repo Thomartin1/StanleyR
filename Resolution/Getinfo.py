@@ -12,6 +12,6 @@ def CheckTypeAction(customers, stamp):
 
 ## Retourne l'ID  du client concerné par le timestamp. 
 def GetCustomerId(customers, stamp):
-for cust in customers.keys(): 
+    for cust in customers.keys(): 
         if (stamp == cust[0] or stamp == cust[1]):
-        return cust    
+            return cust    

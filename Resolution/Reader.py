@@ -2,7 +2,7 @@ import csv
 import sys
 import datetime
 
-def CreateTimeFrames(PATH):
+def CreateTimeFrames(path):
     listinteresting=[]
     with open(path, 'rb') as reservations:
         lines = csv.reader(reservations, delimiter='\t')
@@ -44,7 +44,7 @@ def CreateParking(PATH, param):
     return parking
 
 
-def datareader(pathparking,pathtime,pathdemand):
+def datareader(pathparking,pathdemand):
     tf=CreateTimeFrames(pathdemand)
     parking = CreateParking(pathparking,0)   #changer en 0 pour utiliser le csv
 

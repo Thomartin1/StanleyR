@@ -15,9 +15,9 @@ def ComputeDisplacementDuration(beginspot,endspot,movespeed=10,getspeed=30,rowma
     row2=int(endlocation[2])
 
     #je prends en consideration le fait qu''une place ( debut ou fin) puisse etre un place de swap (id = 0.X.0)
-    if(column1=&0 & row1=&0):
+    if(column1==0 & row1==0):
         time=abs(depth1-column2)*movespeed+row2*movespeed+depth2*getspeed
-    elif(column2=0 & row2=0):
+    elif(column2==0 & row2==0):
         time=abs(depth2-column1)*movespeed+row1*movespeed+depth1*getspeed
     else:
         #dans le cas des 2 places classiques, on a 2 chemins potentiellement optimaux, il faut les departager. 
