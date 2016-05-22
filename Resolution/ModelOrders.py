@@ -4,7 +4,7 @@ def ComputeDisplacementDuration(beginspot,endspot,movespeed=10,getspeed=30,rowma
 #Noter que movespeed et get speed sont plutot des temps pour parcourir une certaine distance. Plus ils sont grand , moins grande est la vitesse
     #je parse pour obtenir le entiers sorrespondant aux colones/profondeurs/rangees des places concernees
     beginlocation=beginspot.split('.')
-    endlocaiton=endspot.split('.')
+    endlocation=endspot.split('.')
 
     column1=int(beginlocation[0])
     depth1=int(beginlocation[1])
@@ -29,10 +29,10 @@ def ComputeDisplacementDuration(beginspot,endspot,movespeed=10,getspeed=30,rowma
     
 # This is were we crete the structure of an order. 
 class Task:
-    def __init__(beginspot,endspot,startdate,customerid):
+    def __init__(self,beginspot,endspot,startdate,customerid):
         self.begin=beginspot
         self.end=endspot
         self.startfrom= startdate
         self.duration = ComputeDisplacementDuration(self.begin,self.end)
-        self.endfrom = self.startfrom + self.duration
+        self.endfrom = self.startfrom.AddMinutes(self.duration)
         self.identity=customerid 

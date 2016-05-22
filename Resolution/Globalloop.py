@@ -1,6 +1,6 @@
 import ModelParking
 import Creationgraph
-import ModelOrders
+import ModelOrders as MO
 import ModelRobots
 
 import Reader as R
@@ -19,18 +19,19 @@ def GlobalLoop(pathparking,pathdemand):
     robots=SU.setuprobots(4,stamps[0])
     customers=SU.Get_customers(pathdemand)
 
-
     for tf in stamps:
         typeaction = GI.CheckTypeAction(customers, tf)
         asignedspot=SS.asignswapspot(parking)
+        target = GI.GetCustomerId(customers,tf)
 
         if(typeaction):
             place=SF.Findplace(parking)
-            neworder=Task(asignedspot,place,tf,parking[place])
+            neworder=MO.Task(asignedspot,place,tf,target)
             GO.giveorder(robots,neworder)
 
         elif(typeaction == False):
-            EC.extractcar()
+            place=GI.Retrievelocation(parking,target)
+            EC.extractcar(asignedspot,parking,robots,place,tf,target)
 
 
 
@@ -48,5 +49,5 @@ def GlobalLoop(pathparking,pathdemand):
 
 
 pathparking="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/model_parking.csv"
-pathdemand="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A"
+pathdemand="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/demandtest.csv"
 GlobalLoop(pathparking,pathdemand)

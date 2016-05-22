@@ -4,9 +4,9 @@ def Findplace(parking):
 #on va explorer le parking en prenant la place la plus proche. 
 #ne connaissantpas trop le parking, om prend comme place reference "0.0.0"
     found = False
-    for column in range(0, 10000):
-        for row in range(0,10000):
-            for depth in range(0,10000):
+    for column in range(1, 10000):
+        for row in range(1,10000):
+            for depth in range(1,10000):
                 location="%s.%s.%s"%(row, depth, column)
                 if(parking[location]=="none"):
                     selected = location

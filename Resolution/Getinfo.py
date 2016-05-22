@@ -5,13 +5,18 @@ import datetime
 #retourne True si c'est une entree, False si c'est une sortie. 
 def CheckTypeAction(customers, stamp):
     for cust in customers.keys(): 
-        if stamp == cust[0]:
+        if stamp == customers[cust][0]:
             return True
-        elif stamp == cust[1]:
+        elif stamp == customers[cust][1]:
             return False
 
 ## Retourne l'ID  du client concerné par le timestamp. 
 def GetCustomerId(customers, stamp):
     for cust in customers.keys(): 
-        if (stamp == cust[0] or stamp == cust[1]):
+        if (stamp == customers[cust][0] or stamp == customers[cust][1]):
             return cust    
+
+def Retrievelocation(parking,target):
+    for i in parking.keys():
+        if parking[i]==target:
+            return i

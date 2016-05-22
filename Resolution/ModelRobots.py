@@ -19,13 +19,13 @@ import ModelOrders
 # currentspot prend l'id de la place de debut de l'ordre des que l'ordre est affecte au robot. Il prend l'id de la place d'arrivee des que l'ordre est fini. 
 
 class Robot:
-    def __init__(numrobot, timestamp):
+    def __init__(self,numrobot, timestamp):
         self.num = numrobot
         self.timeavailable = timestamp
         self.occupied = False
         self.currentspot = "0.0.0"
 
-    def setorder(order):
+    def setorder(self,order):
         if self.occupied :
             self.listtasks.append(order)
         else:
@@ -39,11 +39,11 @@ class Robot:
             self.timeavailable = self.effectivestart+order.ComputeDisplacementDuration
 
 
-    def taskcompleted():
+    def taskcompleted(self):
         # je note la tache actuelle comme finie et passe a la prchaine si il y en a une dans la liste. 
         self.occupied=False
         self.currentspot = self.currenttask.end
         if (self.listtasks.size()>0):
-            self.giveorder(listtasks[0])
+            self.setorderorder(listtasks[0])
             self.listtasks.pop[0]
 

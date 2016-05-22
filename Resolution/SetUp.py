@@ -1,4 +1,6 @@
 import ModelRobots as MR
+import csv
+import datetime
 
 
 ## We setup the data, customers and robots. 
@@ -7,12 +9,14 @@ import ModelRobots as MR
 ## et de l'autre cote  [date arrivee, date depart]
 def Get_customers(path):
     customerlist={}
-    with open(path, 'rb') as reservations:
+    with open(path, 'rt') as reservations:
         lines = csv.reader(reservations, delimiter='\t')
         next(lines, None)
         for line in lines:
-            customernum= line[0].split('_')[1]
-            customerlist[customernum]=[line[1],line[2]]
+            lin = line[0].split('\t')
+            customernum= lin[0].split('_')[1]
+            customerlist[customernum]=[lin[1],lin[2]]
+    reservations.close()
     return customerlist
 
 ## Les robots sont mis dans un dictionnaire 
@@ -20,6 +24,7 @@ def setuprobots(botnum, starttime):
     robots={}
 
     for i in range(0,botnum):
-        robots[i]=MR.Robot(i,starttime)
+        sttime=str(starttime)
+        robots[i]=MR.Robot(i,sttime)
 
-    return(robots,customers)
+    return(robots)
