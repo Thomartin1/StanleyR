@@ -15,7 +15,9 @@ def Get_customers(path):
         for line in lines:
             lin = line[0].split('\t')
             customernum= lin[0].split('_')[1]
-            customerlist[customernum]=[lin[1],lin[2]]
+            arrival = datetime.datetime.strptime(lin[1], '%d/%m/%Y %H:%M:%S')
+            departure = datetime.datetime.strptime(lin[2], '%d/%m/%Y %H:%M:%S')
+            customerlist[customernum]=[arrival,departure]
     reservations.close()
     return customerlist
 
@@ -24,7 +26,7 @@ def setuprobots(botnum, starttime):
     robots={}
 
     for i in range(0,botnum):
-        sttime=str(starttime)
+        sttime=starttime
         robots[i]=MR.Robot(i,sttime)
 
     return(robots)

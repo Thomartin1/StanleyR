@@ -19,17 +19,24 @@ def GlobalLoop(pathparking,pathdemand):
     robots=SU.setuprobots(4,stamps[0])
     customers=SU.Get_customers(pathdemand)
 
+    # print(stamps)
+    # print(customers)
+
     for tf in stamps:
+        # print("tf")
         typeaction = GI.CheckTypeAction(customers, tf)
         asignedspot=SS.asignswapspot(parking)
         target = GI.GetCustomerId(customers,tf)
 
+        # print(typeaction)
         if(typeaction):
+            print("depose")
             place=SF.Findplace(parking)
             neworder=MO.Task(asignedspot,place,tf,target)
             GO.giveorder(robots,neworder)
 
         elif(typeaction == False):
+            print("retrieve")
             place=GI.Retrievelocation(parking,target)
             EC.extractcar(asignedspot,parking,robots,place,tf,target)
 
