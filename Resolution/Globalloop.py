@@ -42,7 +42,7 @@ def GlobalLoop(pathparking,pathdemand):
             print("retrieve")
             place=GI.Retrievelocation(parking,target)
             print(place)
-            EC.extractcar(asignedspot,parking,robots,place,tf,target)
+            EC.extractcar(customers,asignedspot,parking,robots,place,tf,stamps,target)
             parking[asignedspot]= target
             parking[place]="none"
 
