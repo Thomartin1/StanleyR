@@ -24,8 +24,7 @@ def ComputeDisplacementDuration(beginspot,endspot,movespeed=0.12,getspeed=0.5,ro
         time1 = (abs(column1-column2)*movespeed+(depth2+depth1)*getspeed+(row1+row2)*movespeed)
         time2 = (abs(column1-column2)*movespeed+(depth2+depth1)*getspeed+(2*rowmax-row1-row2)*movespeed)
         time=min(time1,time2)
-        #Je ressort le temps de trajet du robot.
-        print(time) 
+        #Je ressort le temps de trajet du robot. 
     return time
     
 # This is were we crete the structure of an order. 

@@ -16,7 +16,7 @@ import ExtractCar as EC
 def GlobalLoop(pathparking,pathdemand):
 
     [stamps,parking]=R.datareader(pathparking,pathdemand)
-    robots=SU.setuprobots(4,stamps[0])
+    robots=SU.setuprobots(1,stamps[0])
     customers=SU.Get_customers(pathdemand)
 
     # print(stamps)
@@ -41,6 +41,7 @@ def GlobalLoop(pathparking,pathdemand):
         elif(typeaction == False):
             print("retrieve")
             place=GI.Retrievelocation(parking,target)
+            print(place)
             EC.extractcar(asignedspot,parking,robots,place,tf,target)
             parking[asignedspot]= target
             parking[place]="none"

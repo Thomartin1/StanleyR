@@ -18,9 +18,11 @@ def extractcar(assignedspot,parking,robots,place,tf,target):
         targetdepth=int(place.split('.')[1])
         column=int(place.split('.')[2])
         exist = True
-        depth=0
-        checkposition=place
-        while (exist and depth<targetdepth):
+        depth=1
+        checkposition="%s.1.%s"%(row, column)
+        print("tagetplace is",place)
+
+        while (depth<targetdepth):
             if(parking[checkposition]=="none"):
                 pass
             else:
@@ -29,14 +31,15 @@ def extractcar(assignedspot,parking,robots,place,tf,target):
                 GO.giveorder(robots,neworder)
             depth +=1
             checkposition="%s.%s.%s"%(row, depth, column)
+            print("checkposition is",checkposition)
             if(checkposition in parking.keys()):
                 exist = True
             else:
                 exist = False
 
-            #ensuite je m'occupe de la voiture de depart. 
-            neworder=MO.Task(place,assignedspot,tf,parking[place])
-            GO.giveorder(robots,neworder)
+        #ensuite je m'occupe de la voiture de depart. 
+        neworder=MO.Task(place,assignedspot,tf,parking[place])
+        GO.giveorder(robots,neworder)
 
 
 

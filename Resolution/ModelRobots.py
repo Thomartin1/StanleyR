@@ -53,6 +53,6 @@ class Robot:
             self.occupied=False
             self.currentspot = self.currenttask.end
             if (len(self.listtasks)>0):
-                self.setorderorder(listtasks[0])
-                self.listtasks.pop[0]
+                self.setorder(self.listtasks[0])
+                self.listtasks.pop(0)
 
