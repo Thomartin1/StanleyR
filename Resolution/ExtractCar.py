@@ -1,4 +1,7 @@
 import ModelRobots
+import SpotFinder as SF
+import ModelOrders as MO
+import GiveOrder as GO
 
 
 
@@ -11,10 +14,9 @@ def extractcar(assignedspot,parking,robots,place,tf,target):
 
     # Je commence par regarder les voitures devant et les replace si c'est le cas.
     if(place is not None): 
-        subplace = place('.')
-        row= place.split('.')[0]
-        targetdepth=place.split('.')[1]
-        column=place.split('.')[2]
+        row= int(place.split('.')[0])
+        targetdepth=int(place.split('.')[1])
+        column=int(place.split('.')[2])
         exist = True
         depth=0
         checkposition=place
@@ -22,9 +24,9 @@ def extractcar(assignedspot,parking,robots,place,tf,target):
             if(parking[checkposition]=="none"):
                 pass
             else:
-                newlocation=Findplace(parking)
-                neworder=Task(place,newlocation,tf,parking[checkposition])
-                giveorder(robots,neworder)
+                newlocation=SF.Findplace(parking)
+                neworder=MO.Task(place,newlocation,tf,parking[checkposition])
+                GO.giveorder(robots,neworder)
             depth +=1
             checkposition="%s.%s.%s"%(row, depth, column)
             if(checkposition in parking.keys()):
@@ -33,6 +35,9 @@ def extractcar(assignedspot,parking,robots,place,tf,target):
                 exist = False
 
             #ensuite je m'occupe de la voiture de depart. 
-            neworder=Task(place,assignedspot,tf,parking[place])
-            giveorder(robots,neworder)
+            neworder=MO.Task(place,assignedspot,tf,parking[place])
+            GO.giveorder(robots,neworder)
 
+
+
+##IL reste à bouger les autres voitures. 

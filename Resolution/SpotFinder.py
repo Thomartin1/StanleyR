@@ -8,11 +8,12 @@ def Findplace(parking):
         for row in range(1,10000):
             for depth in range(1,10000):
                 location="%s.%s.%s"%(row, depth, column)
-                if(parking[location]=="none"):
-                    selected = location
-                    found = True
-                if(found):
-                    break
+                if(location in parking.keys()):
+                    if(parking[location]=="none"):
+                        selected = location
+                        found = True
+                    if(found):
+                        break
             if(found):
                 break
         if(found):

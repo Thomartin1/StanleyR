@@ -30,16 +30,20 @@ def GlobalLoop(pathparking,pathdemand):
 
         # print(typeaction)
         if(typeaction):
+            parking[asignedspot]=target
             print("depose")
             place=SF.Findplace(parking)
             neworder=MO.Task(asignedspot,place,tf,target)
             GO.giveorder(robots,neworder)
+            parking[asignedspot]="none"
+            parking[place]=target
 
         elif(typeaction == False):
             print("retrieve")
             place=GI.Retrievelocation(parking,target)
             EC.extractcar(asignedspot,parking,robots,place,tf,target)
-
+            parking[asignedspot]= target
+            parking[place]="none"
 
 
     #prevision pour la suite. 
