@@ -30,7 +30,7 @@ class Robot:
         # print("setorder")
         if self.occupied :
             self.listtasks.append(order)
-            # print(self.num,"   ",self.currentspot,"  "self.currenttask.end,"      ",self.effectivestart,"  ",self.timeavailable,"  ",self.delay,"TODOLIST")
+            print(self.num,"  ",self.currentspot,"  ",self.currenttask.end, "       ",self.effectivestart,"  ",self.timeavailable,"  ",self.delay,"TOOOODOOOOO")
         else:
             self.occupied = True
             # transit=ModelOrders.ComputeDisplacementDuration(self.currentspot,order.begin)
