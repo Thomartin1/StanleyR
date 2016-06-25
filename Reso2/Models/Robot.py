@@ -11,12 +11,14 @@ import Order
 
 class Robot:
     def __init__(self,numbot,timestamp):
-        self.num=numrobot
+        self.num=numbot
         self.nextavailable = timestamp
 
-    def setorder(self, foo_task):
-        orderexec=foo_task
-        orderexec.update(start)
+    def setorder(self,parking,foo_task):
+        self.orderexec=foo_task
+        effectivestart=max(self.nextavailable, self.orderexec.startfrom)
+        self.orderexec.update(effectivestart)
 
-    def marktask(self,cust_arrival,cust_departure,Nbrobonduty):
-        printincsv(self.num,cust_arrival,cust_departure,Nbrobonduty)
+    def marktask(self,parking,cust_arrival,cust_departure,Nbrobonduty):
+        parking[self.orderexec.begin]='none'
+        self.orderexec.printincsv(self.num,cust_arrival,cust_departure,Nbrobonduty)
