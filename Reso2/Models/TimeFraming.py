@@ -1,4 +1,5 @@
-# We read the demand csv, take the times and order them to create frames.
+import csv
+import datetime# We read the demand csv, take the times and order them to create frames.
 
 # we return a list: [t0,t1,t2,t3,t4,t5,t6,t7,t8,t9, etc...]
 # t0 is the first arrival and  txx the last departure.

@@ -3,10 +3,10 @@ import csv
 import sys
 
 
-##We consider that the parking has a rectangular structure and robots can move along
+# We consider that the parking has a rectangular structure and robots can move along
 # sides of the row.
 def ComputeDisplacementDuration(beginspot,endspot,movespeed=0.12,getspeed=0.5,rowmax=40):
-#Noter que movespeed et get speed sont plutot des temps pour parcourir une certaine distance. Plus ils sont grand , moins grande est la vitesse
+# Noter que movespeed et get speed sont plutot des temps pour parcourir une certaine distance. Plus ils sont grand , moins grande est la vitesse
     #je parse pour obtenir le entiers sorrespondant aux colones/profondeurs/rangees des places concernees
     beginlocation=beginspot.split('.')
     endlocation=endspot.split('.')
@@ -30,6 +30,7 @@ def ComputeDisplacementDuration(beginspot,endspot,movespeed=0.12,getspeed=0.5,ro
         time2 = (abs(column1-column2)*movespeed+(depth2+depth1)*getspeed+(2*rowmax-row1-row2)*movespeed)
         time=min(time1,time2)
         #Je ressort le temps de trajet du robot.
+        time = datetime.timedelta(0,time*60)
     return time
 
 ## We have to stock durations in a huge matrix for wierd parking.
@@ -40,21 +41,48 @@ def ComputeDisplacementDuration(beginspot,endspot,movespeed=0.12,getspeed=0.5,ro
 #This is the structure of an order.
 #We use it to compute
 class Task:
-    def __init__(self,beginspot,endspot,ordertime,customerid,typeaction):
+    def __init__(self,beginspot,endspot,ordertime,customerid,typeaction,parking):
+
+        # order parameters are set
         self.begin=beginspot
         self.end=endspot
         self.startfrom= ordertime
-        self.duration = ComputeDisplacementDuration(self.begin,self.end)
+        # self.duration = ComputeDisplacementDuration(self.begin,self.end)
+        self.duration = datetime.timedelta(0,180)
         self.identity=customerid
         self.type=typeaction
 
-    def update(start):
+        # the target spot is reserved.
+        parking[self.end]=self.identity
+
+    def update(self,start):
         self.effectivestart = start
-        self.effectiveend = start + ComputeDisplacementDuration(self.begin,self.end)
+        self.effectiveend = start + self.duration
         self.delay=self.effectivestart-self.startfrom
 
-    def printincsv(robnum,cust_arrival,cust_departure,Nbrobonduty):
-        log = open('activitylog.csv','a')
-        inforow=[self.startfromtimestamp,self.type,robnum,self.identity,cust_arrival,self.effectivestart,self.effectiveend,cust_departure,self.delay,"nbdeposit","Nbstorage",Nbrobonduty,self.begin,self.end]
-        log.write(inforow)
-        log.close()
+    def printincsv(self,robnum,cust_arrival,cust_departure,Nbrobonduty):
+        # log = open('activitylog.csv','a')
+        print()
+        print()
+        print()
+        print()
+        print()
+        print(str(self.startfrom))
+        print(str(self.type))
+        print(str(robnum))
+        print(str(self.identity))
+        print(str(cust_arrival))
+        print(str(self.effectivestart))
+        print(str(self.effectiveend))
+        print(str(cust_departure))
+        print(str(self.delay))
+        print(str(self.begin))
+        print(str(self.end))
+        print()
+        print()
+        print()
+        print()
+        print()
+        # inforow="%s,%s,%s,%s,%s,%s,%s,%s,%s,%s"%(self.startfrom,self.type,robnum,self.identity,cust_arrival,self.effectivestart,self.effectiveend,cust_departure,self.delay,"nbdeposit","Nbstorage","Nbrobonduty",self.begin,self.end)
+        # log.write(inforow)
+        # log.close()
