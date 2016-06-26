@@ -47,8 +47,13 @@ class Task:
         self.begin=beginspot
         self.end=endspot
         self.startfrom= ordertime
-        # self.duration = ComputeDisplacementDuration(self.begin,self.end)
-        self.duration = datetime.timedelta(0,180)
+
+        if(typeaction=="ARRIVEE" or typeaction=="DEPART"):
+            self.duration = datetime.timedelta(0,0)
+        else:
+            self.duration = datetime.timedelta(0,180)
+            # self.duration = ComputeDisplacementDuration(self.begin,self.end)
+
         self.identity=customerid
         self.type=typeaction
 

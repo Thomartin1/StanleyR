@@ -23,12 +23,15 @@ def Globalloop(pathparking,pathdemand):
     customers=RD.Get_customers(pathdemand)
     stamps=MT.CreateTimeFrames(pathdemand)
     (parking,swapavailable)=RP.CreateParking(pathparking, 0,stamps[0])
-    robots=RR.setuprob(3,stamps[0])
+    robots=RR.setuprob(1,stamps[0])
 
     RS.setupcsv()
 
     #print(customers)
+    i=1
     for tf in stamps:
+        print("action# %s"%i)
+        i+=1
         orderlist=[]
         # print(parking)
 
@@ -37,7 +40,10 @@ def Globalloop(pathparking,pathdemand):
 
         if typeaction :
             #represent the customer looking and waiting for a spot
-            parkspot=give_place(parking,orderlist)
+            (parkspot,nextime)=give_place(parking,swapavailable,orderlist,tf,identity,customers[identity][0],customers[identity][1])
+            print(swapavailable[0])
+            print(swapavailable[1])
+            print(swapavailable[2])
             #write the corresponding row in the log
             # printaction(kwargs**) ## celle-ci me pose soucis......)
             print("voiture deposee en %s"%(parkspot))
@@ -45,7 +51,7 @@ def Globalloop(pathparking,pathdemand):
             targetspot=findspot(parking,customers)
             print("voiture emenee en %s"%(targetspot))
             #give the order to move the car
-            queue_in(customers,orderlist,parkspot,targetspot,tf,identity, "rangement",parking)
+            queue_in(customers,orderlist,parkspot,targetspot,nextime,identity, "rangement",parking)
 
         # ##########print(orderlist)
         #if the next action is a car leaving the parking
@@ -59,7 +65,7 @@ def Globalloop(pathparking,pathdemand):
         #     extractcars(parking,)
         #     #we move the corresponding car
         #     queue_in(kwargs**)
-        affecttasks(parking, robots, orderlist, customers)
+        affecttasks(parking, robots, orderlist, customers,swapavailable)
 
 
 
