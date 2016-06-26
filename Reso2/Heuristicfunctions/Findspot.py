@@ -2,8 +2,8 @@ import datetime
 
 def findspot(parking,customers):
     for depth in range(1,3):
-        for row in range(1,10000):
-            for column in range(1,10000):
+        for row in range(1,10):
+            for column in range(1,10):
                 location="%s.%s.%s"%(row, 3-depth, column)
                 if location in parking.keys():
                     if parking[location]=='none':

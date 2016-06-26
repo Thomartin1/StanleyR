@@ -10,6 +10,7 @@ import Models.TimeFraming as MT
 import Readers.Demand as RD
 import Readers.Parking as RP
 import Readers.Robsetup as RR
+import Readers.Setupcsv as RS
 from Heuristicfunctions.Checkaction import CheckTypeAction
 from Heuristicfunctions.Retrievespot import Retrievelocation , GetCustomerId
 from Heuristicfunctions.Findspot import findspot
@@ -23,6 +24,8 @@ def Globalloop(pathparking,pathdemand):
     stamps=MT.CreateTimeFrames(pathdemand)
     (parking,swapavailable)=RP.CreateParking(pathparking, 0,stamps[0])
     robots=RR.setuprob(3,stamps[0])
+
+    RS.setupcsv()
 
     #print(customers)
     for tf in stamps:
