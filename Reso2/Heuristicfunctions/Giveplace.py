@@ -1,7 +1,6 @@
 import datetime
 import Order
 
-#for the moment we only take the first spot available, there is no waiting time.
 def give_place(parking,swapavailable, orderlist,tf,customerid,cust_arrival,cust_departure):
     for num in range(1,100):
         location="0.%s.0"%(num)
