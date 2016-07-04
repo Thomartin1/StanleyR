@@ -7,7 +7,9 @@ def GetCustomerId(customers, stamp):
 
 #Retrieve the current location of a customer in the parking
 def Retrievelocation(identity,parking,tf):
-
+    print("########")
+    print(identity)
+    print("########")
     for i in parking.keys():
         if parking[i]==identity:
             position=i

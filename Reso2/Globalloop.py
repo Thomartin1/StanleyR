@@ -43,14 +43,15 @@ def Globalloop(pathparking,pathdemand):
         identity=GetCustomerId(customers, tf)
 
         if typeaction :
+
             #represent the customer looking and waiting for a spot
             (parkspot,nextime)=give_place(parking,swapavailable,orderlist,tf,identity,customers[identity][0],customers[identity][1])
-            print(" ")
-            print(" ")
-            print(" ")
-            print(swapavailable[0])
-            print(swapavailable[1])
-            print(swapavailable[2])
+            # print(" ")
+            # print(" ")
+            # print(" ")
+            # print(swapavailable[0])
+            # print(swapavailable[1])
+            # print(swapavailable[2])
             #write the corresponding row in the log
             # printaction(kwargs**) ## celle-ci me pose soucis......)
             # print("voiture deposee en %s"%(parkspot))
@@ -91,7 +92,7 @@ def Globalloop(pathparking,pathdemand):
             justintime=tf-datetime.timedelta(0,180)
             swapspot=orderlist[len(orderlist)-1].end
             effectiveleave=max(justintime,startofexitaction)
-            
+
             depart=O.Task(swapspot,"0.0.0",justintime,identity,"DEPART",parking)
             depart.update(effectiveleave)
             parking[swapspot]='none'
@@ -105,16 +106,17 @@ def Globalloop(pathparking,pathdemand):
             print(depart.delay)
             print("")
             print("")
-        print(swapavailable[0])
-        print(swapavailable[1])
-        print(swapavailable[2])
-        print(parking)
+        # print(swapavailable[0])
+        # print(swapavailable[1])
+        # print(swapavailable[2])
+        if(identity=="1718"):
+            print(parking)
 
 
 
 
 
-pathparking="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/parkingtest.csv"
-pathdemand="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/demandtest.csv"
+pathparking="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/model_parking.csv"
+pathdemand="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/data_proportional_occupation.csv"
 
 Globalloop(pathparking, pathdemand)

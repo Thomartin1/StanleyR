@@ -1,0 +1,60 @@
+donnees entières mais que jusqu’au 10 mars.
+
+avec 2 robots:
+
+mean waiting time when arriving: 0.0
+sqrt variance when arriving: 0.0
+number of people waiting more than 1 min when arriving: 0
+number of people waiting more than 2 min when arriving: 0
+number of people waiting more than 5 min when arriving: 0
+number of people waiting more than 10 min when arriving: 0
+
+mean waiting time when departing: 60.390123984608806
+sqrt variance when departing: 177.6152192288002
+number of people waiting more than 1 min when departing: 755
+number of people waiting more than 2 min when departing: 661
+number of people waiting more than 5 min when departing: 375
+number of people waiting more than 10 min when departing: 120
+number of people waiting more than 12 min when departing: 79
+number of people waiting more than 100 min when departing: 0
+number of people waiting more than 10000 min when departing: 0
+
+
+avec 4 robots: 
+
+mean waiting time when arriving: 0.0
+sqrt variance when arriving: 0.0
+number of people waiting more than 1 min when arriving: 0
+number of people waiting more than 2 min when arriving: 0
+number of people waiting more than 5 min when arriving: 0
+number of people waiting more than 10 min when arriving: 0
+
+mean waiting time when departing: 1.883924754168448
+sqrt variance when departing: 20.015032674225196
+number of people waiting more than 1 min when departing: 47
+number of people waiting more than 2 min when departing: 30
+number of people waiting more than 5 min when departing: 7
+number of people waiting more than 10 min when departing: 0
+number of people waiting more than 12 min when departing: 0
+number of people waiting more than 100 min when departing: 0
+number of people waiting more than 10000 min when departing: 0
+
+
+avec 10 robots(nombre utilisé pour leur simulations): 
+
+mean waiting time when arriving: 0.0
+sqrt variance when arriving: 0.0
+number of people waiting more than 1 min when arriving: 0
+number of people waiting more than 2 min when arriving: 0
+number of people waiting more than 5 min when arriving: 0
+number of people waiting more than 10 min when arriving: 0
+mean waiting time when departing: 0.0
+sqrt variance when departing: 0.0
+number of people waiting more than 1 min when departing: 0
+number of people waiting more than 2 min when departing: 0
+number of people waiting more than 5 min when departing: 0
+number of people waiting more than 10 min when departing: 0
+number of people waiting more than 12 min when departing: 0
+number of people waiting more than 100 min when departing: 0
+number of people waiting more than 10000 min when departing: 0
+

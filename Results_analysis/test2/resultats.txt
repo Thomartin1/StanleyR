@@ -1,0 +1,35 @@
+ avec 1 robot
+
+mean waiting time when arriving: 59.214285714285715
+sqrt variance when arriving: 139.1670006920917
+number of people waiting more than 1 min when arriving: 2
+number of people waiting more than 2 min when arriving: 2
+number of people waiting more than 5 min when arriving: 2
+number of people waiting more than 10 min when arriving: 0
+mean waiting time when departing: 222.71428571428572
+sqrt variance when departing: 413.76156497802117
+number of people waiting more than 1 min when departing: 4
+number of people waiting more than 2 min when departing: 4
+number of people waiting more than 5 min when departing: 3
+number of people waiting more than 10 min when departing: 3
+number of people waiting more than 12 min when departing: 3
+number of people waiting more than 100 min when departing: 0
+number of people waiting more than 10000 min when departing: 0
+
+avec 2 robots
+
+mean waiting time when arriving: 10.5
+sqrt variance when arriving: 37.85828839237189
+number of people waiting more than 1 min when arriving: 1
+number of people waiting more than 2 min when arriving: 1
+number of people waiting more than 5 min when arriving: 0
+number of people waiting more than 10 min when arriving: 0
+mean waiting time when departing: 66.28571428571429
+sqrt variance when departing: 168.18163165009963
+number of people waiting more than 1 min when departing: 2
+number of people waiting more than 2 min when departing: 2
+number of people waiting more than 5 min when departing: 2
+number of people waiting more than 10 min when departing: 0
+number of people waiting more than 12 min when departing: 0
+number of people waiting more than 100 min when departing: 0
+number of people waiting more than 10000 min when departing: 0

@@ -7,6 +7,11 @@ from Heuristicfunctions.Findspot import findspot
 
 def movecars(currentspot,carinfront,orderlist,parking,demand,initialtime):
 
+    print("#######")
+    print(currentspot)
+    print(carinfront)
+    print("#######")
+
     row=int(currentspot.split('.')[0])
     depth=int(currentspot.split('.')[1])
     column=int(currentspot.split('.')[2])
@@ -22,6 +27,6 @@ def movecars(currentspot,carinfront,orderlist,parking,demand,initialtime):
     if(len(carinfront)>0):
         for i in range(1,depth):
             spot="%s.%s.%s"%(row,i,column)
-            # print(spot)
-            newspot=findspot(parking,demand)
-            queue_in(demand,orderlist,spot,newspot,initialtime,carinfront[spot],"relocation",parking)
+            if(spot in carinfront.keys()):
+                newspot=findspot(parking,demand)
+                queue_in(demand,orderlist,spot,newspot,initialtime,carinfront[spot],"relocation",parking)

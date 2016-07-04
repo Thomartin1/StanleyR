@@ -2,7 +2,7 @@ import datetime
 import Order
 
 def give_place(parking,swapavailable, orderlist,tf,customerid,cust_arrival,cust_departure):
-    for num in range(1,100):
+    for num in range(1,len(swapavailable)+1):
         location="0.%s.0"%(num)
         if(location in parking.keys()):
             if (parking[location]=='none' and swapavailable[num-1]<=tf) :
