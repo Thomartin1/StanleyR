@@ -1,0 +1,18 @@
+1 robot
+
+
+mean waiting time when arriving: 21.0
+sqrt variance when arriving: 51.43928459844674
+number of people waiting more than 1 min when arriving: 1
+number of people waiting more than 2 min when arriving: 1
+number of people waiting more than 5 min when arriving: 0
+number of people waiting more than 10 min when arriving: 0
+mean waiting time when departing: 20.0
+sqrt variance when departing: 48.98979485566356
+number of people waiting more than 1 min when departing: 1
+number of people waiting more than 2 min when departing: 1
+number of people waiting more than 5 min when departing: 0
+number of people waiting more than 10 min when departing: 0
+number of people waiting more than 12 min when departing: 0
+number of people waiting more than 100 min when departing: 0
+number of people waiting more than 10000 min when departing: 0

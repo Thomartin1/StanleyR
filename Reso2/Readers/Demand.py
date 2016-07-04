@@ -11,7 +11,8 @@ def Get_customers(path):
         lines = csv.reader(reservations, delimiter='\t')
         next(lines, None)
         for line in lines:
-            lin = line[0].split('\t')
+            # lin = line[0].split('\t')
+            lin = line
             customernum= lin[0].split('_')[1]
             arrival = datetime.datetime.strptime(lin[1], '%d/%m/%Y %H:%M:%S')
             departure = datetime.datetime.strptime(lin[2], '%d/%m/%Y %H:%M:%S')

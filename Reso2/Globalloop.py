@@ -17,18 +17,25 @@ from Heuristicfunctions.Findspot import findspot
 from Heuristicfunctions.Giveplace import give_place
 from Heuristicfunctions.Queue_In import queue_in
 from Heuristicfunctions.Affecttasks import affecttasks
+from Heuristicfunctions.Movecars import movecars
+from Heuristicfunctions.Findexitswap import findexitswap
+from Order import ComputeDisplacementDuration
+
 
 def Globalloop(pathparking,pathdemand):
 
     customers=RD.Get_customers(pathdemand)
     stamps=MT.CreateTimeFrames(pathdemand)
     (parking,swapavailable)=RP.CreateParking(pathparking, 0,stamps[0])
-    robots=RR.setuprob(3,stamps[0])
+    robots=RR.setuprob(1,stamps[0])
 
     RS.setupcsv()
 
     #print(customers)
+    i=1
     for tf in stamps:
+        # print("action# %s"%i)
+        i+=1
         orderlist=[]
         # print(parking)
 
@@ -36,35 +43,80 @@ def Globalloop(pathparking,pathdemand):
         identity=GetCustomerId(customers, tf)
 
         if typeaction :
+
             #represent the customer looking and waiting for a spot
-            parkspot=give_place(parking,orderlist)
+            (parkspot,nextime)=give_place(parking,swapavailable,orderlist,tf,identity,customers[identity][0],customers[identity][1])
+            # print(" ")
+            # print(" ")
+            # print(" ")
+            # print(swapavailable[0])
+            # print(swapavailable[1])
+            # print(swapavailable[2])
             #write the corresponding row in the log
             # printaction(kwargs**) ## celle-ci me pose soucis......)
-            print("voiture deposee en %s"%(parkspot))
+            # print("voiture deposee en %s"%(parkspot))
             #find a fitting spot in the parking (back-end)
             targetspot=findspot(parking,customers)
-            print("voiture emenee en %s"%(targetspot))
+            # print("voiture emenee en %s"%(targetspot))
             #give the order to move the car
-            queue_in(customers,orderlist,parkspot,targetspot,tf,identity, "rangement",parking)
+            queue_in(customers,orderlist,parkspot,targetspot,nextime,identity, "rangement",parking)
 
-        # ##########print(orderlist)
+            affecttasks(parking, robots, orderlist, customers,swapavailable)
+
         #if the next action is a car leaving the parking
-        # if typeaction==False:
-        #     currentspot=Retrievelocation(parking,target)
-        #     #we find a free SwapSpot
-        #     spot=findswapt(parking)
-        #     # we set the objective time 3 misn before
-        #     tftarget= tf-datetim.timedelta(second=3)
-        #     #we move the blocking Cars
-        #     extractcars(parking,)
-        #     #we move the corresponding car
-        #     queue_in(kwargs**)
-        affecttasks(parking, robots, orderlist, customers)
+
+        if typeaction==False:
+            # print(" ")
+            # print(" ")
+            # print(" ")
+            # print(swapavailable[0])
+            # print(swapavailable[1])
+            # print(swapavailable[2])
+
+            (currentspot,carinfront)=Retrievelocation(identity,parking,tf)
+
+
+            tftarget= tf-datetime.timedelta(0,180)
+
+            movecars(currentspot,carinfront,orderlist,parking,customers,stamps[0])
+
+            (exitspot,timedispo)=findexitswap(parking,swapavailable,tf)
+
+            starttimepossible=timedispo - ComputeDisplacementDuration(currentspot,exitspot)
+
+            queue_in(customers,orderlist,currentspot,exitspot,starttimepossible,parking[currentspot],"exit",parking)
+
+            affecttasks(parking, robots, orderlist, customers,swapavailable)
+
+            startofexitaction=orderlist[len(orderlist)-1].effectivestart
+            justintime=tf-datetime.timedelta(0,180)
+            swapspot=orderlist[len(orderlist)-1].end
+            effectiveleave=max(justintime,startofexitaction)
+
+            depart=O.Task(swapspot,"0.0.0",justintime,identity,"DEPART",parking)
+            depart.update(effectiveleave)
+            parking[swapspot]='none'
+            depart.printincsv("X",customers[identity][0],customers[identity][1],"Nbrobonduty")
+            print("")
+            print("")
+            print(depart.type)
+            print(depart.identity)
+            print(depart.begin)
+            print(customers[depart.identity][1])
+            print(depart.delay)
+            print("")
+            print("")
+        # print(swapavailable[0])
+        # print(swapavailable[1])
+        # print(swapavailable[2])
+        if(identity=="1718"):
+            print(parking)
 
 
 
 
-pathparking="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/parkingtest.csv"
-pathdemand="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/demandtest.csv"
+
+pathparking="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/model_parking.csv"
+pathdemand="/Users/Thomartin/Documents/Ponts_2A/Stanley_Robotics/4160 - ENPC PROJET2A/data_projet_2A/data_proportional_occupation.csv"
 
 Globalloop(pathparking, pathdemand)
